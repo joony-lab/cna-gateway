@@ -1,0 +1,98 @@
+server:
+  port: 8088
+
+---
+
+spring:
+  profiles: default
+  cloud:
+    gateway:
+      routes:
+        - id: orderBurger
+          uri: http://localhost:8081
+          predicates:
+            - Path=/orders/** /menus/**
+        - id: pay
+          uri: http://localhost:8082
+          predicates:
+            - Path=/payHistories/** 
+        - id: store
+          uri: http://localhost:8083
+          predicates:
+            - Path=/storeManagements/** 
+        - id: order
+          uri: http://localhost:8084
+          predicates:
+            - Path=/orders/** 
+        - id: payment
+          uri: http://localhost:8085
+          predicates:
+            - Path=/payments/** 
+        - id: delivery
+          uri: http://localhost:8086
+          predicates:
+            - Path=/deliveries/** 
+        - id: orderDashboard
+          uri: http://localhost:8087
+          predicates:
+            - Path= /orderDashboards/**
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins:
+              - "*"
+            allowedMethods:
+              - "*"
+            allowedHeaders:
+              - "*"
+            allowCredentials: true
+
+
+---
+
+spring:
+  profiles: docker
+  cloud:
+    gateway:
+      routes:
+#        - id: orderBurger
+#          uri: http://orderBurger:8080
+#          predicates:
+#            - Path=/orders/** /menus/**
+#        - id: pay
+#          uri: http://pay:8080
+#          predicates:
+#            - Path=/payHistories/**
+#        - id: store
+#          uri: http://store:8080
+#          predicates:
+#            - Path=/storeManagements/**
+        - id: order
+          uri: http://order:8080
+          predicates:
+            - Path=/orders/** 
+        - id: payment
+          uri: http://payment:8080
+          predicates:
+            - Path=/payments/** 
+        - id: delivery
+          uri: http://delivery:8080
+          predicates:
+            - Path=/deliveries/** 
+        - id: orderDashboard
+          uri: http://orderDashboard:8080
+          predicates:
+            - Path= /orderDashboards/**
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins:
+              - "*"
+            allowedMethods:
+              - "*"
+            allowedHeaders:
+              - "*"
+            allowCredentials: true
+
+server:
+  port: 8080
