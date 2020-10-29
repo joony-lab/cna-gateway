@@ -55,18 +55,18 @@ spring:
   cloud:
     gateway:
       routes:
-        - id: orderBurger
-          uri: http://orderBurger:8080
-          predicates:
-            - Path=/orders/** /menus/**
-        - id: pay
-          uri: http://pay:8080
-          predicates:
-            - Path=/payHistories/** 
-        - id: store
-          uri: http://store:8080
-          predicates:
-            - Path=/storeManagements/** 
+#        - id: orderBurger
+#          uri: http://orderBurger:8080
+#          predicates:
+#            - Path=/orders/** /menus/**
+#        - id: pay
+#          uri: http://pay:8080
+#          predicates:
+#            - Path=/payHistories/**
+#        - id: store
+#          uri: http://store:8080
+#          predicates:
+#            - Path=/storeManagements/**
         - id: order
           uri: http://order:8080
           predicates:
